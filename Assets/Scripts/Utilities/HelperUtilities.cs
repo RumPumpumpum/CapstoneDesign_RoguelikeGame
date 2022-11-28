@@ -12,7 +12,7 @@ public static class HelperUtilities
     {
         if(stringToCheck == "") 
         {
-            Debug.Log(fieldName + " 가 비어있습니다. 문자열을 입력해야 합니다. 해당 오브젝트: " + thisObject.name.ToString());
+            Debug.Log(fieldName + " 항목이 비어있습니다. 문자열을 입력해야 합니다. 해당 오브젝트: " + thisObject.name.ToString());
             return true;
 
         }
@@ -22,10 +22,16 @@ public static class HelperUtilities
     /// <summary>
     /// 리스트에 null값이 있거나 목록이 비어있을 경우 true 반환
     /// </summary>
-    public static bool VaildateCheckEnumerableValues(Object thisObject, string fieldName, IEnumerable enumerableObjectToCheck)
+    public static bool ValidateCheckEnumerableValues(Object thisObject, string fieldName, IEnumerable enumerableObjectToCheck)
     {
         bool error = false;
         int count = 0;
+
+        if(enumerableObjectToCheck == null)
+        {
+            Debug.Log(fieldName + " 항목이 비어있습니다. 해당 오브젝트: " + thisObject.name.ToString());
+            return true;
+        }
 
         foreach (var item in enumerableObjectToCheck)
         {
@@ -42,7 +48,7 @@ public static class HelperUtilities
 
         if (count == 0) // count가 0인지 검사, count가 0이다 => 열거 가능한 객체에 값이 없다.
             {
-                Debug.Log(fieldName + " 의 값이 없습니다. 해당 오브젝트: " + thisObject.name.ToString());
+                Debug.Log(fieldName + " 목록이 비어있습니다 . 해당 오브젝트: " + thisObject.name.ToString());
                 error = true;
             }
             return error;

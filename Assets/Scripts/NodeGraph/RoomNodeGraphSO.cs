@@ -28,6 +28,24 @@ public class RoomNodeGraphSO : ScriptableObject
     }
 
     /// <summary>
+    /// 룸노드 타입으로 부터 룸 노드를 얻는다
+    /// </summary>
+    /// <param name="roomNodeType"></param>
+    /// <returns></returns>
+    public RoomNodeSO GetRoomNode(RoomNodeTypeSO roomNodeType)
+    {
+        foreach(RoomNodeSO node in roomNodeList)
+        {
+            if(node.roomNodeType == roomNodeType)
+            {
+                return node;
+            }
+        }
+
+        return null;
+    }
+
+    /// <summary>
     /// 룸 노드 ID로 부터 룸 노드를 얻는다
     /// </summary>
     /// <param name="roomNodeID"></param>
@@ -39,6 +57,20 @@ public class RoomNodeGraphSO : ScriptableObject
             return roomNode;
         }
         return null;
+    }
+
+    /// <summary>
+    /// 부모노드로 부터 자식노드를 얻는다
+    /// </summary>
+    /// <param name="parentRoomNode"></param>
+    /// <returns></returns>
+    public IEnumerable<RoomNodeSO> GetChildRoomNodes(RoomNodeSO parentRoomNode)
+    {
+        foreach (string childNodeID in parentRoomNode.childRoomNodeIDList)
+        {
+            yield return GetRoomNode(childNodeID);
+        }
+
     }
 
     #region Editor Code
