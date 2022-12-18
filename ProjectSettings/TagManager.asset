@@ -14,7 +14,8 @@ TagManager:
   - roomTilemap
   - miniMapPlayer
   - playerWeapon
-  - WallTilemap
+  - BackGroundTilemap
+  - BackGround
   layers:
   - Default
   - TransparentFX
@@ -52,11 +53,11 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: BackGround
+    uniqueID: 595803777
+    locked: 0
   - name: Ground
     uniqueID: 3504611765
-    locked: 0
-  - name: Wall
-    uniqueID: 826902503
     locked: 0
   - name: Ground Decoration 1
     uniqueID: 2002717741
