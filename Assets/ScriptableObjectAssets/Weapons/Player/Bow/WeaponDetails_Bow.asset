@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 895c6ba6c5a0afb46a65c3a10915d386, type: 3}
+  m_Name: WeaponDetails_Bow
+  m_EditorClassIdentifier: 
+  weaponName: Bow
+  weaponSprite: {fileID: 2063497140, guid: 36da87675f5b6ec4b92d2dce8ca77165, type: 3}
+  weaponShootPosition: {x: 1.18, y: -0.163, z: 0}
+  weaponCurrentAmmo: {fileID: 11400000, guid: 988bde99fbf509f4d92773e8c1a73766, type: 2}
+  hasInfiniteAmmo: 1
+  hasInfiniteClipCapacity: 1
+  weaponClipAmmoCapacity: 6
+  weaponAmmoCapacity: 0
+  weaponFireRate: 0.5
+  weaponPrechargeTime: 0
+  weaponReloadTime: 1.2

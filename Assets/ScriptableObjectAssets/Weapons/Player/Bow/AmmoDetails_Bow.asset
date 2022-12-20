@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b13360710c56334c9b6805a05a44842, type: 3}
+  m_Name: AmmoDetails_Bow
+  m_EditorClassIdentifier: 
+  ammoName: Bow Ammo
+  isPlayerAmmo: 1
+  ammoSprite: {fileID: -579963580, guid: 36da87675f5b6ec4b92d2dce8ca77165, type: 3}
+  ammoPrefabArray:
+  - {fileID: 5854791319632357703, guid: 7e5d1e9939d5c3447a175094be10b169, type: 3}
+  ammoMaterial: {fileID: 2100000, guid: fd5ae752e16da36428c7ae98c49dc19e, type: 2}
+  ammoChargeTime: 0
+  ammoChargeMaterial: {fileID: 0}
+  ammoDamage: 1
+  ammoSpeedMin: 20
+  ammoSpeedMax: 20
+  ammoRange: 12
+  ammoRotationSpeed: 1
+  ammoSpreadMin: 2
+  ammoSpreadMax: 4
+  ammoSpawnAmountMin: 1
+  ammoSpawnAmountMax: 1
+  ammoSpawnIntervalMin: 0
+  ammoSpawnIntervalMax: 0
+  isAmmoTrail: 0
+  ammoTrailTime: 0
+  ammoTrailMaterial: {fileID: 0}
+  ammoTrailStartWidth: 0
+  ammoTrailEndWidth: 0

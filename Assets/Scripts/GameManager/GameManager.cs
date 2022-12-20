@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 [DisallowMultipleComponent]
 
@@ -28,13 +31,57 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     #endregion Tooltip
 
     [SerializeField] private int currentDungeonLevelListIndex = 0;
+    private Room currentRoom;
+    private Room previousRoom;
+    private PlayerDetailsSO playerDetails;
+    private Player player;
 
     [HideInInspector] public GameState gameState;
 
-    private void Start()
+
+    protected override void Awake()
+    {
+        // Call base class
+        base.Awake();
+
+        // Set player details - saved in current player scriptable object from the main menu
+        playerDetails = GameResources.Instance.currentPlayer.playerDetails;
+
+        // Instantiate player
+        InstantiatePlayer();
+
+    }
+
+    private void InstantiatePlayer()
+    {
+        // Instantiate player
+        GameObject playerGameObject = Instantiate(playerDetails.playerPrefab);
+
+        // Initialize Player
+        player = playerGameObject.GetComponent<Player>();
+
+        player.Initialize(playerDetails);
+
+    }
+
+    private void OnEnable()
+    {
+        // Subscribe to room changed event.
+       // StaticEventHandler.OnRoomChanged += StaticEventHandler_OnRoomChanged;
+    }
+
+    private void OnDisable()
+    {
+        // Unsubscribe from room changed event
+    //    StaticEventHandler.OnRoomChanged -= StaticEventHandler_OnRoomChanged;
+    }
+
+
+        private void Start()
     {
         gameState = GameState.gameStarted;
     }
+
 
     private void Update()
     {
@@ -66,15 +113,51 @@ public class GameManager : SingletonMonobehaviour<GameManager>
 
     }
 
+    /// <summary>
+    /// Set the current room the player in in
+    /// </summary>
+    public void SetCurrentRoom(Room room)
+    {
+        previousRoom = currentRoom;
+        currentRoom = room;
+
+        //// Debug
+        //Debug.Log(room.prefab.name.ToString());
+    }
+
     private void PlayDungeonLevel(int dungeonLevelListIndex)
     {
         bool dungeonBuiltSuccessfully = DungeonBuilder.Instance.GenerateDungeon(dungeonLevelList[dungeonLevelListIndex]);
 
-        if(!dungeonBuiltSuccessfully)
+        if (!dungeonBuiltSuccessfully)
         {
             Debug.LogError("지정된 방과 노드 그래프로 던전을 만들 수 없습니다");
         }
+        // Set player roughly mid-room
+        player.gameObject.transform.position = new Vector3((currentRoom.lowerBounds.x + currentRoom.upperBounds.x) / 2f, (currentRoom.lowerBounds.y + currentRoom.upperBounds.y) / 2f, 0f);
+
+        // Get nearest spawn point in room nearest to player
+        player.gameObject.transform.position = HelperUtilities.GetSpawnPositionNearestToPlayer(player.gameObject.transform.position);
+
     }
+
+    /// <summary>
+    /// Get the player
+    /// </summary>
+    public Player GetPlayer()
+    {
+        return player;
+    }
+
+
+    /// <summary>
+    /// Get the current room the player is in
+    /// </summary>
+    public Room GetCurrentRoom()
+    {
+        return currentRoom;
+    }
+
 
     #region Validation
 

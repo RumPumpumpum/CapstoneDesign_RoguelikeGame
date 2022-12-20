@@ -29,6 +29,15 @@ public class GameResources : MonoBehaviour
 
     public RoomNodeTypeListSO roomNodeTypeList;
 
+
+    #region Header PLAYER
+    [Space(10)]
+    #endregion
+    #region Tooltip
+    [Tooltip("현재 플레이어")]
+    #endregion Tooltip
+    public CurrentPlayerSO currentPlayer;
+
     #region MATERIALS
 
     [Space(10)]
